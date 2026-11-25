@@ -1,8 +1,11 @@
 import Header from "./components/Header";
 import MenuItem from "./components/MenuItem";
 import { menuItems } from "./data/db";
+import useOrder from "./hooks/useOrder";
 
 function CalculadoraPropinasApp() {
+  const { handleAddItem } = useOrder();
+
   return (
     <>
       <Header />
@@ -11,7 +14,11 @@ function CalculadoraPropinasApp() {
           <h2 className="text-4xl font-black">Menú</h2>
           <div className="space-y-3 mt-10">
             {menuItems.map((item) => (
-              <MenuItem key={item.id} item={item} />
+              <MenuItem
+                key={item.id}
+                item={item}
+                onHandleAddItem={handleAddItem}
+              />
             ))}
           </div>
         </div>
