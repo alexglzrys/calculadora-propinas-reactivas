@@ -1,11 +1,20 @@
 import Header from "./components/Header";
 import MenuItem from "./components/MenuItem";
 import OrderContents from "./components/OrderContents";
+import OrderTotals from "./components/OrderTotals";
+import TipPercentageForm from "./components/TipPercentageForm";
 import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 
 function CalculadoraPropinasApp() {
-  const { order, handleAddItem, handleRemoveItem } = useOrder();
+  const {
+    order,
+    tip,
+    handleAddItem,
+    handleRemoveItem,
+    handleAddTip,
+    handlePlaceOrder,
+  } = useOrder();
 
   return (
     <>
@@ -23,8 +32,23 @@ function CalculadoraPropinasApp() {
             ))}
           </div>
         </div>
-        <div className="p-5 border border-gray-200 rounded-md">
-          <OrderContents order={order} onHandleRemoveItem={handleRemoveItem} />
+        <div className="p-5 border border-dashed border-gray-200 rounded-lg space-y-10">
+          {order.length === 0 ? (
+            <p className="text-center">La orden esta vacía</p>
+          ) : (
+            <>
+              <OrderContents
+                order={order}
+                onHandleRemoveItem={handleRemoveItem}
+              />
+              <TipPercentageForm tip={tip} onHandleAddTip={handleAddTip} />
+              <OrderTotals
+                order={order}
+                tip={tip}
+                onHandlePlaceOrder={handlePlaceOrder}
+              />
+            </>
+          )}
         </div>
       </main>
     </>

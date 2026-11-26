@@ -3,6 +3,7 @@ import type { MenuItemType, OrderItemType } from "../types";
 
 export default function useOrder() {
   const [order, setOrder] = useState<OrderItemType[]>([]);
+  const [tip, setTip] = useState(0);
 
   const handleAddItem = (item: MenuItemType) => {
     setOrder((prevOrder) => {
@@ -26,9 +27,22 @@ export default function useOrder() {
     );
   };
 
+  const handleAddTip = (value: number) => {
+    setTip(value);
+  };
+
+  // Todo: Implementar la realización del pedido: Por el momento solo resetea la orden y la propina
+  const handlePlaceOrder = () => {
+    setOrder([]);
+    setTip(0);
+  };
+
   return {
     order,
+    tip,
     handleAddItem,
     handleRemoveItem,
+    handleAddTip,
+    handlePlaceOrder,
   };
 }
