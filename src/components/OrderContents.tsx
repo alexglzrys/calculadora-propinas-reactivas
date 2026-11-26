@@ -3,9 +3,13 @@ import type { OrderItemType } from "../types";
 
 interface OrderContentsProps {
   order: OrderItemType[];
+  onHandleRemoveItem: (id: OrderItemType["id"]) => void;
 }
 
-export default function OrderContents({ order }: OrderContentsProps) {
+export default function OrderContents({
+  order,
+  onHandleRemoveItem,
+}: OrderContentsProps) {
   return (
     <>
       <h2 className="font-black text-4xl">Consumo</h2>
@@ -30,6 +34,7 @@ export default function OrderContents({ order }: OrderContentsProps) {
               <button
                 type="button"
                 className="bg-red-700 text-white rounded-full size-7 cursor-pointer text font-bold"
+                onClick={() => onHandleRemoveItem(item.id)}
               >
                 X
               </button>

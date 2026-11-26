@@ -20,8 +20,15 @@ export default function useOrder() {
     });
   };
 
+  const handleRemoveItem = (id: OrderItemType["id"]) => {
+    setOrder((prevOrder) =>
+      prevOrder.filter((orderItem) => orderItem.id !== id),
+    );
+  };
+
   return {
     order,
     handleAddItem,
+    handleRemoveItem,
   };
 }

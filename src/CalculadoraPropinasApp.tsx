@@ -5,7 +5,7 @@ import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 
 function CalculadoraPropinasApp() {
-  const { order, handleAddItem } = useOrder();
+  const { order, handleAddItem, handleRemoveItem } = useOrder();
 
   return (
     <>
@@ -24,7 +24,7 @@ function CalculadoraPropinasApp() {
           </div>
         </div>
         <div className="p-5 border border-gray-200 rounded-md">
-          <OrderContents order={order} />
+          <OrderContents order={order} onHandleRemoveItem={handleRemoveItem} />
         </div>
       </main>
     </>
