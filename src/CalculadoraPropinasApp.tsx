@@ -1,10 +1,11 @@
 import Header from "./components/Header";
 import MenuItem from "./components/MenuItem";
+import OrderContents from "./components/OrderContents";
 import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 
 function CalculadoraPropinasApp() {
-  const { handleAddItem } = useOrder();
+  const { order, handleAddItem } = useOrder();
 
   return (
     <>
@@ -22,8 +23,8 @@ function CalculadoraPropinasApp() {
             ))}
           </div>
         </div>
-        <div>
-          <h2>Consumo</h2>
+        <div className="p-5 border border-gray-200 rounded-md">
+          <OrderContents order={order} />
         </div>
       </main>
     </>
